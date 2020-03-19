@@ -1,0 +1,33 @@
+{
+  "name": "chess",
+  "version": "1.0.0",
+  "description": "Valid Chess Moves",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caiodoneda/chess.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caiodoneda/chess/issues"
+  },
+  "homepage": "https://github.com/caiodoneda/chess#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.3",
+    "@types/node": "^13.9.2",
+    "tslint": "^6.1.0",
+    "typescript": "^3.8.3"
+  }
+}
