@@ -9,13 +9,13 @@ export default class AlgebraicNotationService {
     }
 
     static parsePositionToAlgebraicNotation(position: Position): AlgebraicNotation {
-        return `${POSSIBLE_LETTERS.charAt(position.y)}${position.x + 1}`;
+        return `${POSSIBLE_LETTERS.charAt(position.x)}${position.y + 1}`;
     }
 
     static parseAlgebraicNotationToPosition(algebraicNotationPosition: AlgebraicNotation): Position {
         return {
             x: Number(algebraicNotationPosition.charAt(1)),
-            y: POSSIBLE_LETTERS.indexOf(algebraicNotationPosition.charAt(0)),
+            y: POSSIBLE_LETTERS.indexOf(algebraicNotationPosition.charAt(0)) - 1,
         };
     }
 }

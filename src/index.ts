@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 import isAlgebraicNotation from './middlewares/isAlgebraicNotation';
+import BoardService from './services/boardService';
 
 const app = express();
 const port = 8080;
@@ -10,7 +11,15 @@ app.get( "/", ( req: Request, res: Response ) => {
 
 app.get( "/valid-moves", isAlgebraicNotation, ( req: Request, res: Response ) => {
     const { position = "E4", piece = "knight" } = req.query;
-    res.send(`Calculating moves for position = ${position} and piece = ${piece}`);
+    const boardService = new BoardService(position);
+    const positionsAfterOneMove = boardService.getValidMoves();
+    const positionsAfterTwoMoves = boardService.getValidMovesForPositions(positionsAfterOneMove);
+    const response = {
+        oneMove: positionsAfterOneMove,
+        twoMoves: positionsAfterTwoMoves
+    };
+
+    res.send(JSON.stringify(response));
 });
 
 app.use((req: Request, res: Response, next: NextFunction) => {

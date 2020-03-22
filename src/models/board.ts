@@ -4,15 +4,19 @@ import { Position } from '../types';
 type BoardPositions = number[][];
 
 export default class Board {
+    private size: number
     private boardPositions: BoardPositions;
     private piece: Piece;
     private piecePosition: Position;
 
     constructor(piece: Piece, piecePosition: Position, size = 8) {
-        const rows = Array(size).fill(0);
-        this.boardPositions = Array(size).fill(rows);
+        this.size = size;
         this.piece = piece;
         this.piecePosition = piecePosition;
+    }
+
+    setPiecePosition(position: Position): void {
+        this.piecePosition = position;
     }
 
     getValidMovesForPiece(): Position[] {
@@ -25,7 +29,9 @@ export default class Board {
     }
 
     isValidPosition(position: Position): boolean {
-        return this.boardPositions.length >= position.x &&
-            this.boardPositions[position.x].length >= position.y;
+        const upperBound = this.size - 1;
+        const lowerBound = 0;
+        return (position.x >= lowerBound && position.x <= upperBound) && 
+            (position.y >= lowerBound && position.y <= upperBound);
     }
 };
