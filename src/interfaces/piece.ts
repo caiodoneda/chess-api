@@ -1,6 +1,6 @@
 import { Position } from '../types';
 
 export default interface Piece {
-    possibleMoves: Array<Position>,
-    getPossibleMoves(): Array<Position>,
+    possibleMoves: Position[],
+    getPossibleMoves(): Position[],
 };

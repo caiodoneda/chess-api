@@ -1,7 +1,7 @@
 import Piece from '../interfaces/piece';
 import { Position } from '../types';
 
-type BoardPositions = Array<Array<number>>;
+type BoardPositions = number[][];
 
 export default class Board {
     private boardPositions: BoardPositions;
@@ -15,9 +15,9 @@ export default class Board {
         this.piecePosition = piecePosition;
     }
 
-    getValidMovesForPiece(): Array<Position> {
+    getValidMovesForPiece(): Position[] {
         return this.piece.getPossibleMoves()
-            .map(moves => ({ 
+            .map(moves => ({
                 x: this.piecePosition.x + moves.x,
                 y: this.piecePosition.y + moves.y,
             }))
