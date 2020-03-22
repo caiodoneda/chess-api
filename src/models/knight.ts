@@ -3,11 +3,9 @@ import { Position } from '../types';
 
 
 export default class Knight implements Piece {
-    position: Position;
     possibleMoves: Array<Position>;
 
-    constructor(position: Position) {
-        this.position = position;
+    constructor() {
         this.possibleMoves = [
             { x: 2, y: 1 },
             { x: 1, y: 2 },
@@ -22,9 +20,5 @@ export default class Knight implements Piece {
     
     getPossibleMoves(): Array<Position> {
         return this.possibleMoves;
-    }
-
-    setPosition(position: Position): void {
-        this.position = position;
     }
 };
