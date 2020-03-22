@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import isAlgebraicNotation from './middlewares/isAlgebraicNotation';
 
 const app = express();
@@ -9,11 +9,11 @@ app.get( "/", ( req: Request, res: Response ) => {
 });
 
 app.get( "/valid-moves", isAlgebraicNotation, ( req: Request, res: Response ) => {
-    const { position, piece } = req.query;
+    const { position = "E4", piece = "knight" } = req.query;
     res.send(`Calculating moves for position = ${position} and piece = ${piece}`);
 });
 
-app.use((req: Request, res: Response, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).send("Sorry can't find that!")
 })
 
