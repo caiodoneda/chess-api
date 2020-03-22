@@ -1,7 +1,6 @@
 import Piece from '../interfaces/piece';
 import { Position } from '../types';
 
-
 export default class Knight implements Piece {
     possibleMoves: Position[];
 
@@ -21,4 +20,4 @@ export default class Knight implements Piece {
     getPossibleMoves(): Position[] {
         return this.possibleMoves;
     }
-};
+}

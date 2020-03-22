@@ -4,7 +4,7 @@ import { Position } from '../types';
 type BoardPositions = number[][];
 
 export default class Board {
-    private size: number
+    private size: number;
     private boardPositions: BoardPositions;
     private piece: Piece;
     private piecePosition: Position;
@@ -20,18 +20,23 @@ export default class Board {
     }
 
     getValidMovesForPiece(): Position[] {
-        return this.piece.getPossibleMoves()
-            .map(moves => ({
+        return this.piece
+            .getPossibleMoves()
+            .map((moves) => ({
                 x: this.piecePosition.x + moves.x,
                 y: this.piecePosition.y + moves.y,
             }))
-            .filter(position => this.isValidPosition(position));
+            .filter((position) => this.isValidPosition(position));
     }
 
     isValidPosition(position: Position): boolean {
         const upperBound = this.size - 1;
         const lowerBound = 0;
-        return (position.x >= lowerBound && position.x <= upperBound) && 
-            (position.y >= lowerBound && position.y <= upperBound);
+        return (
+            position.x >= lowerBound &&
+            position.x <= upperBound &&
+            position.y >= lowerBound &&
+            position.y <= upperBound
+        );
     }
-};
+}
