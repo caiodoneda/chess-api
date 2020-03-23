@@ -1,5 +1,6 @@
 import React from 'react';
 import ChessBoard from 'components/ChessBoard';
+import ChessBoardLegend from 'components/ChessBoardLegend';
 import 'css/App.css';
 
 const VALID_MOVES_URL = 'api/valid-moves';
@@ -46,18 +47,31 @@ export default class App extends React.Component {
     };
 
     setPosition = (position) => {
-        this.setState({ position });
+        this.setState({ position, moves: { oneMove: [], twoMoves: [] } });
     };
 
     render() {
         return (
             <div className="App">
-                <ChessBoard
-                    setPosition={this.setPosition}
-                    selectedPosition={this.state.position}
-                    moves={this.state.moves}
-                />
-                <button onClick={this.fetchMoves}> Get Valid Moves </button>
+                <h2 className="App-title">
+                    Welcome to valid chess moves (Knight)
+                </h2>
+                <div className="App-board">
+                    <ChessBoard
+                        setPosition={this.setPosition}
+                        selectedPosition={this.state.position}
+                        moves={this.state.moves}
+                    />
+                    <div>
+                        <ChessBoardLegend />
+                        <button
+                            className="App-fetchButton"
+                            onClick={this.fetchMoves}
+                        >
+                            Calculate Valid Moves
+                        </button>
+                    </div>
+                </div>
             </div>
         );
     }

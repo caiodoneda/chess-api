@@ -12,11 +12,11 @@
 }
 
 .Square.oneMove {
-    background-color: orangered;
+    background-color: #ff5722;
 }
 
 .Square.twoMoves {
-    background-color: blue;
+    background-color: #2196f3;
 }
 
 .Square:hover {
@@ -25,5 +25,5 @@
 }
 
 .Square.selected {
-    background-color: darkgreen;
+    background-color: #4caf50;
 }
