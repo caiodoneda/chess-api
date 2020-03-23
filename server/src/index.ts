@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express';
-import isAlgebraicNotation from './middlewares/isAlgebraicNotation';
+import isAlgebraicNotation from './middleware/isAlgebraicNotation';
 import BoardService from './services/boardService';
 
 const app = express();
-const port = 8080;
+const port = 5000;
 
 app.get(
     '/api/valid-moves',
