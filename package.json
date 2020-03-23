@@ -2,14 +2,16 @@
     "name": "chess",
     "version": "1.0.0",
     "description": "Valid Chess Moves",
-    "main": "dist/index.js",
+    "main": "server/dist/index.js",
     "scripts": {
         "prebuild": "eslint -c .eslintrc.js --ext .ts src",
         "build": "tsc",
         "prestart": "npm run build",
         "start": "node .",
         "dev:start": "tsc && node .",
-        "dev": "nodemon --watch src -e ts --exec npm run dev:start",
+        "client": "cd client && npm run start",
+        "server": "nodemon --watch server/src -e ts --exec npm run dev:start",
+        "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -31,6 +33,7 @@
         "@types/node": "^13.9.2",
         "@typescript-eslint/eslint-plugin": "^2.24.0",
         "@typescript-eslint/parser": "^2.24.0",
+        "concurrently": "^5.1.0",
         "eslint": "^6.8.0",
         "nodemon": "^2.0.2",
         "prettier": "^2.0.1",

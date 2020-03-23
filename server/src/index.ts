@@ -5,10 +5,6 @@ import BoardService from './services/boardService';
 const app = express();
 const port = 8080;
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello world!');
-});
-
 app.get(
     '/api/valid-moves',
     isAlgebraicNotation,
