@@ -6,12 +6,12 @@ import { AlgebraicNotation } from '../types';
 export default class BoardService {
     private board: Board;
 
-    constructor(albebraicNotationPosition: AlgebraicNotation) {
-        const postion = AlgebraicNotationService.parseAlgebraicNotationToPosition(
-            albebraicNotationPosition
+    constructor(algebraicNotationPosition: AlgebraicNotation) {
+        const position = AlgebraicNotationService.parseAlgebraicNotationToPosition(
+            algebraicNotationPosition
         );
         const piece = new Knight();
-        this.board = new Board(piece, postion);
+        this.board = new Board(piece, position);
     }
 
     getValidMoves(): AlgebraicNotation[] {
@@ -22,12 +22,12 @@ export default class BoardService {
     }
 
     getValidMovesForPositions(
-        albebraicNotationPositions: AlgebraicNotation[]
+        algebraicNotationPositions: AlgebraicNotation[]
     ): AlgebraicNotation[] {
-        const validMoves = albebraicNotationPositions.flatMap(
-            (albebraicNotationPosition) => {
+        const validMoves = algebraicNotationPositions.flatMap(
+            (algebraicNotationPosition) => {
                 const position = AlgebraicNotationService.parseAlgebraicNotationToPosition(
-                    albebraicNotationPosition
+                    algebraicNotationPosition
                 );
                 this.board.setPiecePosition(position);
                 return this.getValidMoves();
