@@ -2,13 +2,15 @@ import React from 'react';
 import Square from 'components/Square';
 import 'css/ChessBoard.css';
 
+const BOARD_DEFAULT_SIZE = 8;
+
 export default class ChessBoard extends React.Component {
     state = {
         squares: [],
     };
 
     componentDidMount() {
-        this.setState({ squares: this.createSquares(8) });
+        this.setState({ squares: this.createSquares(BOARD_DEFAULT_SIZE) });
     }
 
     onSquareClick(position) {
