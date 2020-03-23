@@ -10,7 +10,7 @@
         "start": "node .",
         "dev:start": "tsc && node .",
         "client": "cd client && npm run start",
-        "server": "nodemon --watch server/src -e ts --exec npm run dev:start",
+        "server": "tsc && nodemon .",
         "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
