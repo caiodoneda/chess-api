@@ -11,8 +11,8 @@ export default class ChessBoard extends React.Component {
         this.setState({ squares: this.createSquares(8) });
     }
 
-    handleSquareSelected(position) {
-        this.setState({ selectedPosition: position });
+    onSquareClick(position) {
+        this.props.setPosition(position);
     }
 
     isOdd(number) {
@@ -21,20 +21,20 @@ export default class ChessBoard extends React.Component {
 
     isSelected(position) {
         return (
-            this.state.selectedPosition &&
-            this.state.selectedPosition == position
+            this.props.selectedPosition &&
+            this.props.selectedPosition === position
         );
     }
 
     createSquares(boardSize) {
         const squares = [];
 
-        for (let i = 0; i < boardSize; i++) {
-            for (let j = 0; j < boardSize; j++) {
-                const currentPosition = { i, j };
+        for (let y = boardSize - 1; y >= 0; y--) {
+            for (let x = 0; x < boardSize; x++) {
+                const currentPosition = { x, y };
                 squares.push({
-                    key: `${i}-${j}`,
-                    blackSquare: this.isOdd(i + j),
+                    key: `${x}-${y}`,
+                    blackSquare: this.isOdd(x + y),
                     position: currentPosition,
                 });
             }
@@ -42,16 +42,40 @@ export default class ChessBoard extends React.Component {
         return squares;
     }
 
-    renderSquares() {
-        return this.state.squares.map((square) => (
-            <Square
-                key={square.key}
-                onClick={() => this.handleSquareSelected(square.position)}
-                blackSquare={square.blackSquare}
-                selected={this.isSelected(square.position)}
-            />
-        ));
-    }
+    isPositionEqual = (p1, p2) => p1.x === p2.x && p1.y === p2.y;
+
+    isPositionInMovesArray = (position, moves) =>
+        moves.find((move) => this.isPositionEqual(move, position)) !==
+        undefined;
+
+    getSquareStyling = (position) => {
+        if (this.isSelected(position)) {
+            return 'selected';
+        }
+
+        if (this.isPositionInMovesArray(position, this.props.moves.twoMoves)) {
+            return 'twoMoves';
+        }
+
+        if (this.isPositionInMovesArray(position, this.props.moves.oneMove)) {
+            return 'oneMove';
+        }
+
+        return '';
+    };
+
+    renderSquares = () => {
+        return this.state.squares.map((square) => {
+            return (
+                <Square
+                    key={square.key}
+                    onClick={() => this.onSquareClick(square.position)}
+                    blackSquare={square.blackSquare}
+                    styling={this.getSquareStyling(square.position)}
+                />
+            );
+        });
+    };
 
     render() {
         return <div className="ChessBoard"> {this.renderSquares()}</div>;

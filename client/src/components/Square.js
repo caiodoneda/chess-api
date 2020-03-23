@@ -3,10 +3,9 @@ import classnames from 'classnames';
 import 'css/Square.css';
 
 export default function Square(props) {
-    const classNames = classnames('Square', {
+    const classNames = classnames('Square', props.styling, {
         black: props.blackSquare,
         white: !props.blackSquare,
-        selected: props.selected,
     });
     return <div onClick={props.onClick} className={classNames}></div>;
 }
