@@ -20,10 +20,8 @@ export default class AlgebraicNotationService {
         algebraicNotationPosition: AlgebraicNotation
     ): Position {
         return {
-            x: Number(algebraicNotationPosition.charAt(1)),
-            y:
-                POSSIBLE_LETTERS.indexOf(algebraicNotationPosition.charAt(0)) -
-                1,
+            x: POSSIBLE_LETTERS.indexOf(algebraicNotationPosition.charAt(0)),
+            y: Number(algebraicNotationPosition.charAt(1)) - 1,
         };
     }
 }
