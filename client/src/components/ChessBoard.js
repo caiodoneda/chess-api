@@ -77,7 +77,49 @@ export default class ChessBoard extends React.Component {
         });
     };
 
+    renderHelperLetters = () => {
+        return (
+            <div className="ChessBoard-lettersContainer">
+                <div className="ChessBoard-letters">A</div>
+                <div className="ChessBoard-letters">B</div>
+                <div className="ChessBoard-letters">C</div>
+                <div className="ChessBoard-letters">D</div>
+                <div className="ChessBoard-letters">E</div>
+                <div className="ChessBoard-letters">F</div>
+                <div className="ChessBoard-letters">G</div>
+                <div className="ChessBoard-letters">H</div>
+            </div>
+        );
+    };
+
+    renderHelperNumbers = () => {
+        return (
+            <div className="ChessBoard-numbersContainer">
+                <div className="ChessBoard-numbers">1</div>
+                <div className="ChessBoard-numbers">2</div>
+                <div className="ChessBoard-numbers">3</div>
+                <div className="ChessBoard-numbers">4</div>
+                <div className="ChessBoard-numbers">5</div>
+                <div className="ChessBoard-numbers">6</div>
+                <div className="ChessBoard-numbers">7</div>
+                <div className="ChessBoard-numbers">8</div>
+            </div>
+        );
+    };
+
     render() {
-        return <div className="ChessBoard"> {this.renderSquares()}</div>;
+        return (
+            <div className="ChessBoard">
+                {this.renderHelperLetters()}
+                <div className="ChessBoard-squaresContainer">
+                    {this.renderHelperNumbers()}
+                    <div className="ChessBoard-squares">
+                        {this.renderSquares()}
+                    </div>
+                    {this.renderHelperNumbers()}
+                </div>
+                {this.renderHelperLetters()}
+            </div>
+        );
     }
 }
