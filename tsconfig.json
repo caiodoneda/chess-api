@@ -7,11 +7,11 @@
         "noImplicitAny": true,
         "moduleResolution": "node",
         "sourceMap": true,
-        "outDir": "server/dist",
+        "outDir": "src/dist",
         "baseUrl": ".",
         "paths": {
             "*": ["node_modules/*"]
         }
     },
-    "include": ["server/src/**/*"]
+    "include": ["src/**/*"]
 }

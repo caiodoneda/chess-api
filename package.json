@@ -2,14 +2,14 @@
     "name": "chess",
     "version": "1.0.0",
     "description": "Valid Chess Moves",
-    "main": "server/dist/index.js",
+    "main": "src/dist/index.js",
     "scripts": {
         "prebuild": "eslint -c .eslintrc.js --ext .ts src",
         "build": "tsc",
         "prestart": "npm run build",
         "start": "node .",
         "dev:start": "tsc && node .",
-        "client": "cd client && npm run start",
+        "client": "cd src/client && npm run start",
         "server": "tsc && nodemon .",
         "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
         "test": "echo \"Error: no test specified\" && exit 1"
