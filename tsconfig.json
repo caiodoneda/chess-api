@@ -1,17 +1,19 @@
 {
     "compilerOptions": {
         "module": "commonjs",
+        "allowJs": true,
         "esModuleInterop": true,
         "target": "es6",
-        "lib": ["es2019"],
+        "lib": ["es2019", "dom"],
         "noImplicitAny": true,
         "moduleResolution": "node",
         "sourceMap": true,
-        "outDir": "src/dist",
+        "outDir": "dist",
         "baseUrl": ".",
         "paths": {
             "*": ["node_modules/*"]
-        }
+        },
+        "jsx": "react"
     },
-    "include": ["src/**/*"]
+    "include": ["src/server/**/*.ts"]
 }

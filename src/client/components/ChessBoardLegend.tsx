@@ -1,5 +1,5 @@
-import React from 'react';
-import 'css/ChessBoardLegend.css';
+import * as React from 'react';
+import '../css/ChessBoardLegend.css';
 
 export default function ChessBoardLegend() {
     return (

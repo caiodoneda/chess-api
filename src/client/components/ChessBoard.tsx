@@ -1,11 +1,30 @@
-import React from 'react';
-import Square from 'components/Square';
-import 'css/ChessBoard.css';
+import * as React from 'react';
+import { Position, Moves } from '../types';
+import Square from './Square';
+import '../css/ChessBoard.css';
 
 const BOARD_DEFAULT_SIZE = 8;
 
-export default class ChessBoard extends React.Component {
-    state = {
+export interface ChessBoardProps {
+    setPosition: (position: Position) => void;
+    selectedPosition?: Position;
+    moves: Moves;
+}
+
+type Square = {
+    key: string;
+    blackSquare: boolean;
+    position: Position;
+};
+
+interface State {
+    squares: Square[];
+}
+export default class ChessBoard extends React.Component<
+    ChessBoardProps,
+    State
+> {
+    state: State = {
         squares: [],
     };
 
@@ -13,22 +32,22 @@ export default class ChessBoard extends React.Component {
         this.setState({ squares: this.createSquares(BOARD_DEFAULT_SIZE) });
     }
 
-    onSquareClick(position) {
+    onSquareClick(position: Position) {
         this.props.setPosition(position);
     }
 
-    isOdd(number) {
+    isOdd(number: number) {
         return number % 2 !== 0;
     }
 
-    isSelected(position) {
+    isSelected(position: Position) {
         return (
             this.props.selectedPosition &&
             this.props.selectedPosition === position
         );
     }
 
-    createSquares(boardSize) {
+    createSquares(boardSize: number) {
         const squares = [];
 
         for (let y = boardSize - 1; y >= 0; y--) {
@@ -44,13 +63,14 @@ export default class ChessBoard extends React.Component {
         return squares;
     }
 
-    isPositionEqual = (p1, p2) => p1.x === p2.x && p1.y === p2.y;
+    isPositionEqual = (p1: Position, p2: Position) =>
+        p1.x === p2.x && p1.y === p2.y;
 
-    isPositionInMovesArray = (position, moves) =>
+    isPositionInMovesArray = (position: Position, moves: Position[]) =>
         moves.find((move) => this.isPositionEqual(move, position)) !==
         undefined;
 
-    getSquareStyling = (position) => {
+    getSquareStyling = (position: Position) => {
         if (this.isSelected(position)) {
             return 'selected';
         }

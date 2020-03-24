@@ -1,26 +1,35 @@
-import React from 'react';
-import ChessBoard from 'components/ChessBoard';
-import ChessBoardLegend from 'components/ChessBoardLegend';
-import 'css/App.css';
+import * as React from 'react';
+import ChessBoard from './ChessBoard';
+import ChessBoardLegend from './ChessBoardLegend';
+import '../css/App.css';
+import { Position, Moves } from '../types';
 
 const VALID_MOVES_URL = 'api/valid-moves';
 const POSSIBLE_LETTERS = 'ABCDEFGH';
 
-const parsePositionToAlgebraicNotation = (position) =>
+const parsePositionToAlgebraicNotation = (position: Position) =>
     `${POSSIBLE_LETTERS.charAt(position.x)}${position.y + 1}`;
 
-const parseAlgebraicNotationToPosition = (algebraicNotationPosition) => ({
+const parseAlgebraicNotationToPosition = (
+    algebraicNotationPosition: string
+) => ({
     x: POSSIBLE_LETTERS.indexOf(algebraicNotationPosition.charAt(0)),
     y: Number(algebraicNotationPosition.charAt(1)) - 1,
 });
 
-export default class App extends React.Component {
-    state = {
+interface State {
+    moves: Moves;
+    position?: Position;
+}
+
+interface AppProps {}
+
+export default class App extends React.Component<AppProps, State> {
+    state: State = {
         moves: {
             oneMove: [],
             twoMoves: [],
         },
-        position: {},
     };
 
     fetchMoves = () => {
@@ -34,10 +43,10 @@ export default class App extends React.Component {
             .then((response) => response.json())
             .then((moves) => {
                 const parsedMoves = {
-                    oneMove: moves.oneMove.map((move) =>
+                    oneMove: moves.oneMove.map((move: string) =>
                         parseAlgebraicNotationToPosition(move)
                     ),
-                    twoMoves: moves.twoMoves.map((move) =>
+                    twoMoves: moves.twoMoves.map((move: string) =>
                         parseAlgebraicNotationToPosition(move)
                     ),
                 };
@@ -46,7 +55,7 @@ export default class App extends React.Component {
             });
     };
 
-    setPosition = (position) => {
+    setPosition = (position: Position) => {
         this.setState({ position, moves: { oneMove: [], twoMoves: [] } });
     };
 

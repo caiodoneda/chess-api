@@ -1,8 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import classnames from 'classnames';
-import 'css/Square.css';
+import '../css/Square.css';
 
-export default function Square(props) {
+export interface SquareProps {
+    styling: string;
+    blackSquare: boolean;
+    onClick: () => void;
+}
+
+export default function Square(props: SquareProps) {
     const classNames = classnames('Square', props.styling, {
         black: props.blackSquare,
         white: !props.blackSquare,

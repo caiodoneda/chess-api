@@ -25,7 +25,7 @@ export default class BoardService {
         algebraicNotationPositions: AlgebraicNotation[]
     ): AlgebraicNotation[] {
         const validMoves = algebraicNotationPositions.flatMap(
-            (algebraicNotationPosition) => {
+            (algebraicNotationPosition: AlgebraicNotation) => {
                 const position = AlgebraicNotationService.parseAlgebraicNotationToPosition(
                     algebraicNotationPosition
                 );
