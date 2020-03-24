@@ -4,7 +4,6 @@
     "description": "Valid Chess Moves",
     "main": "dist/index.js",
     "scripts": {
-        "postbuild": "cp package.json dist/public/package.json && cd dist/public && npm install --only=production",
         "build": "tsc",
         "prestart": "npm run build",
         "start": "node .",

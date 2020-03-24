@@ -6,8 +6,9 @@ import BoardService from './services/boardService';
 const app = express();
 const port = 5000;
 
+app.use(express.static('node_modules'));
 app.use(express.static(path.join(__dirname, '/public')));
-console.log(path.join(__dirname, 'public'));
+
 app.get(
     '/api/valid-moves',
     isAlgebraicNotation,
