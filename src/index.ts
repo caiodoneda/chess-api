@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import isAlgebraicNotation from './middleware/isAlgebraicNotation';
 import BoardService from './services/boardService';
+import { AlgebraicNotation } from './types';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -12,7 +13,7 @@ app.get(
     '/api/valid-moves',
     isAlgebraicNotation,
     (req: Request, res: Response) => {
-        const { position = 'E4' } = req.query;
+        const position: AlgebraicNotation = req.query.position;
         const boardService = new BoardService(position);
         const positionsAfterOneMove = boardService.getValidMoves();
         const positionsAfterTwoMoves = boardService.getValidMovesForPositions(

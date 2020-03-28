@@ -1,6 +1,6 @@
 import { AlgebraicNotation, Position } from '../types';
 
-const ALGEBRAIC_NOTATION_PATTERN = /^[a-hA-H][1-8]$/;
+const ALGEBRAIC_NOTATION_PATTERN = /^[A-H][1-8]$/;
 const POSSIBLE_LETTERS = 'ABCDEFGH';
 
 export default class AlgebraicNotationService {
