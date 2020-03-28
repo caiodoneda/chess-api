@@ -4,16 +4,12 @@
         "allowJs": true,
         "esModuleInterop": true,
         "target": "es6",
-        "lib": ["es2019", "dom"],
+        "lib": ["es2019"],
         "noImplicitAny": true,
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "dist",
-        "baseUrl": ".",
-        "paths": {
-            "*": ["node_modules/*"]
-        },
-        "jsx": "react"
+        "baseUrl": "."
     },
-    "include": ["src/server/**/*.ts"]
+    "include": ["src/**/*.ts"]
 }

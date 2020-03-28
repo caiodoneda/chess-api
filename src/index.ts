@@ -1,13 +1,12 @@
 import express, { Request, Response } from 'express';
-import path from 'path';
+import cors from 'cors';
 import isAlgebraicNotation from './middleware/isAlgebraicNotation';
 import BoardService from './services/boardService';
 
 const app = express();
 const port = 5000;
 
-app.use(express.static('node_modules'));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(cors());
 
 app.get(
     '/api/valid-moves',

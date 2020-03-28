@@ -1,6 +1,6 @@
 import Board from '../models/board';
 import Knight from '../models/knight';
-import AlgebraicNotationService from '../services/algebraicNotationService';
+import AlgebraicNotationService from './algebraicNotationService';
 import { AlgebraicNotation } from '../types';
 
 export default class BoardService {
