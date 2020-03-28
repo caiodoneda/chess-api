@@ -10,8 +10,8 @@ Node.js version 12.1.0 and npm version 6.9.0
 
 # Installation
 
-1 - Clone the repository using `https://github.com/caiodoneda/chess-client.git` or download the ZIP file.
-2 - cd chess-client/
+1 - Clone the repository using `https://github.com/caiodoneda/chess.git` or download the ZIP file.
+2 - cd chess/
 3 - run the command `npm install` to install all dependencies.
 
 # Available Scripts
