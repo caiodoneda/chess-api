@@ -4,7 +4,7 @@ import isAlgebraicNotation from './middleware/isAlgebraicNotation';
 import BoardService from './services/boardService';
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 
