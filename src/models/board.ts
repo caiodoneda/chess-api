@@ -1,36 +1,37 @@
 import Piece from '../interfaces/piece';
 import { Position } from '../types';
 
-type BoardPositions = number[][];
-
 export default class Board {
-    private size: number;
-    private boardPositions: BoardPositions;
-    private piece: Piece;
-    private piecePosition: Position;
+    private _size: number;
+    private _piece: Piece;
+    private _piecePosition: Position;
 
     constructor(piece: Piece, piecePosition: Position, size = 8) {
-        this.size = size;
-        this.piece = piece;
-        this.piecePosition = piecePosition;
+        this._size = size;
+        this._piece = piece;
+
+        if (!this.isValidPosition(piecePosition))
+            throw new Error('Invalid position');
+        this._piecePosition = piecePosition;
     }
 
-    setPiecePosition(position: Position): void {
-        this.piecePosition = position;
+    setPiecePosition(position: Position) {
+        if (!this.isValidPosition(position))
+            throw new Error('Invalid position');
+        this._piecePosition = position;
     }
 
     getValidMovesForPiece(): Position[] {
-        return this.piece
-            .getPossibleMoves()
+        return this._piece._possibleMoves
             .map((moves) => ({
-                x: this.piecePosition.x + moves.x,
-                y: this.piecePosition.y + moves.y,
+                x: this._piecePosition.x + moves.x,
+                y: this._piecePosition.y + moves.y,
             }))
             .filter((position) => this.isValidPosition(position));
     }
 
     isValidPosition(position: Position): boolean {
-        const upperBound = this.size - 1;
+        const upperBound = this._size - 1;
         const lowerBound = 0;
         return (
             position.x >= lowerBound &&
